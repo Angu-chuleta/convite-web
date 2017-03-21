@@ -1,14 +1,14 @@
-import { ConviteWebPage } from './app.po';
+import { ConviteWebPage } from './app.po'
 
 describe('convite-web App', () => {
-  let page: ConviteWebPage;
+  let page: ConviteWebPage
 
   beforeEach(() => {
-    page = new ConviteWebPage();
-  });
+    page = new ConviteWebPage()
+  })
 
-  it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
-  });
-});
+  it('should display message saying Convite works', () => {
+    page.navigateTo()
+    expect(page.getParagraphText()).toEqual('Convite works')
+  })
+})

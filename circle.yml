@@ -1,0 +1,23 @@
+general:
+  branches:
+    ignore:
+      - master
+machine:
+  node:
+    version: 6.9.0
+dependencies:
+  pre:
+    - npm install -g yarn
+  override:
+    - yarn install
+    - npm run ng -- build -prod
+test:
+  override:
+    - npm run lint
+    - npm run test
+    - npm run e2e
+deployment:
+  prod:
+    tag: /v[0-9]+(\.[0-9]+)+(-rev[0-9]+)?/ # v1.2.3 and v1.2.3-rev1
+    commands:
+      - curl https://www.google.com
