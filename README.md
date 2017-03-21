@@ -1,5 +1,5 @@
 # ConviteWeb
-[![CircleCI](https://circleci.com/gh/ifhack/convite-web.svg?style=svg)](https://circleci.com/gh/ifhack/convite-web)
+[![CircleCI](https://circleci.com/gh/ifhack/convite-web/tree/develop.svg?style=svg)](https://circleci.com/gh/ifhack/convite-web/tree/develop)
 [![dependencies Status](https://david-dm.org/ifhack/convite-web/status.svg)](https://david-dm.org/ifhack/convite-web)
 [![devDependencies Status](https://david-dm.org/ifhack/convite-web/dev-status.svg)](https://david-dm.org/ifhack/convite-web?type=dev)
 [![Known Vulnerabilities](https://snyk.io/test/github/ifhack/convite-web/badge.svg)](https://snyk.io/test/github/ifhack/convite-web)
