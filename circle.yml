@@ -14,7 +14,7 @@ dependencies:
 test:
   override:
     - npm run lint
-    - npm run test
+    - npm test -- --single-run
     - npm run e2e
 deployment:
   prod:
