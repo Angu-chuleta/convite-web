@@ -11,10 +11,14 @@ dependencies:
   override:
     - yarn install
     - npm run ng -- build -prod
+    - curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - sudo dpkg -i google-chrome.deb
+    - sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
+    - rm google-chrome.deb
 test:
   override:
     - npm run lint
-    - npm run test
+    - npm test -- --single-run
     - npm run e2e
 deployment:
   prod:

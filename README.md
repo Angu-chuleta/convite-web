@@ -1,4 +1,8 @@
 # ConviteWeb
+[![CircleCI](https://circleci.com/gh/ifhack/convite-web.svg?style=svg)](https://circleci.com/gh/ifhack/convite-web)
+[![dependencies Status](https://david-dm.org/ifhack/convite-web/status.svg)](https://david-dm.org/ifhack/convite-web)
+[![devDependencies Status](https://david-dm.org/ifhack/convite-web/dev-status.svg)](https://david-dm.org/ifhack/convite-web?type=dev)
+[![Known Vulnerabilities](https://snyk.io/test/github/ifhack/convite-web/badge.svg)](https://snyk.io/test/github/ifhack/convite-web)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.4.
 
