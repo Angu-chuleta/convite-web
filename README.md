@@ -3,7 +3,7 @@
 [![dependencies Status](https://david-dm.org/ifhack/convite-web/status.svg)](https://david-dm.org/ifhack/convite-web)
 [![devDependencies Status](https://david-dm.org/ifhack/convite-web/dev-status.svg)](https://david-dm.org/ifhack/convite-web?type=dev)
 [![Known Vulnerabilities](https://snyk.io/test/github/ifhack/convite-web/badge.svg)](https://snyk.io/test/github/ifhack/convite-web)
-[![Coverage Status](https://coveralls.io/repos/github/ifhack/convite-web/badge.svg?branch=master)](https://coveralls.io/github/ifhack/convite-web?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/ifhack/convite-web/badge.svg?branch=develop)](https://coveralls.io/github/ifhack/convite-web?branch=develop)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.4.
 
