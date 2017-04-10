@@ -11,7 +11,7 @@ describe('invite.me-web App', () => {
     page.navigateTo()
     page.getParagraphText().then(value => {
       expect(value).toBe('InviteMe works', 'Título esperado não foi encontrado!')
-      return value;
+      return value
     })
   })
 })
