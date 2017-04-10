@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor'
 
-export class ConviteWebPage {
+export class InviteMeWebPage {
   navigateTo() {
     return browser.get('/')
   }
