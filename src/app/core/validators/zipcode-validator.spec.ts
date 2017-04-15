@@ -14,8 +14,8 @@ const invalids = [
 
 const valids = [
   ...new Array<string>(3).fill('').map(() => {
-    let random = Math.round(Math.random() * 1000000000).toString()
-    return `${random.substr(0, 2)}.${random.substr(2, 3)}-${random.substr(5, 3)}`
+    let random = Math.round(Math.random() * 10000000000).toString()
+    return `${random.substr(0, 2)}.${random.substr(2, 3)}-${random.substr(4, 3)}`
   }),
   '29.000-999',
   '29.111-111',
