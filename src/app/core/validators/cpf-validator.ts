@@ -1,5 +1,5 @@
 import { AbstractControl } from '@angular/forms'
-const cpfCnpj = require('cpf_cnpj')
+import * as cpfCnpj from 'cpf_cnpj'
 
 /**
  * Faz a validação de CPF
