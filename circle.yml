@@ -10,6 +10,7 @@ dependencies:
     - npm install -g yarn
   override:
     - yarn install
+    - npm rebuild node-sass
     - npm run ng -- build -prod
     - curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     - sudo dpkg -i google-chrome.deb
