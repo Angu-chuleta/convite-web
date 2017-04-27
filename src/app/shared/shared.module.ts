@@ -8,6 +8,9 @@ import { ValidationMessageComponent } from './components/validation-message/vali
   ],
   declarations: [
     ValidationMessageComponent
+  ],
+  exports: [
+    ValidationMessageComponent
   ]
 })
 export class SharedModule { }
