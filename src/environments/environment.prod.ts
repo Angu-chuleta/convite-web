@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiEndpoint: '',
+  apiEndpoint: 'https://httpbin.org',
   envName: 'prod'
 }

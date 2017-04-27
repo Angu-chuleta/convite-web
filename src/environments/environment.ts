@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: '',
+  apiEndpoint: 'https://httpbin.org',
   envName: 'dev'
 }
