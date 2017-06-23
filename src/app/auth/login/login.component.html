@@ -1,6 +1,8 @@
 <inv-loading-logged-out *ngIf="loading"></inv-loading-logged-out>
-<div *ngIf="message">
-  <p><strong>{{message}}</strong></p>
+<div class="login_wrapper">
+  <div class="animate form login_form">
+    <section class="login_content">
+      <inv-login-form [error]="message" [credentials]="credentials" (onSubmit)="onSubmit($event)"></inv-login-form>
+    </section>
+  </div>
 </div>
-<h1>Login</h1>
-<inv-login-form [credentials]="credentials" (onSubmit)="onSubmit($event)"></inv-login-form>

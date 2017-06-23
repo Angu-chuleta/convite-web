@@ -1,13 +1,14 @@
-import { Component } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { AuthService } from 'app/core/auth'
 import { ICredentialsLogin } from 'interfaces'
+import * as $ from 'jquery'
 
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy {
 
   credentials: ICredentialsLogin
   loading: boolean = false
@@ -23,6 +24,14 @@ export class LoginComponent {
   constructor (
     private router: Router,
     private auth: AuthService) { }
+
+  ngOnInit (): void {
+    $('body').addClass('login')
+  }
+
+  ngOnDestroy (): void {
+    $('body').removeClass('login')
+  }
 
   /**
    * On submit form

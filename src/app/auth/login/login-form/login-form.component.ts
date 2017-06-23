@@ -11,6 +11,7 @@ import { ICredentialsLogin } from 'interfaces'
 export class LoginFormComponent extends FormBase implements OnChanges {
 
   @Input() credentials: ICredentialsLogin
+  @Input() error: string
 
   public validationMessages = {
     'email': {
