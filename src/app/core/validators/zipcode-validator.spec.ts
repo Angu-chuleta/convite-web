@@ -31,7 +31,8 @@ describe('CEP Validator', () => {
   })
 
   invalids.forEach(zip => {
-    it(`Invalid CEP: ${zip} ->`, () => expect(isValidZipCode({ value: zip } as AbstractControl).zipcode).toBe(true))
+    const isValidReturn = isValidZipCode({ value: zip } as AbstractControl)
+    it(`Invalid CEP: ${zip} ->`, () => expect(isValidReturn ? isValidReturn.zipcode : isValidReturn).toBe(true))
   })
 
   valids.forEach(zip => {

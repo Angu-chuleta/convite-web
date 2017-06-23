@@ -28,7 +28,8 @@ describe('CNPJ Validator', () => {
   })
 
   invalids.forEach(cnpj => {
-    it(`Invalid CPNJ: ${cnpj} ->`, () => expect(isValidCNPJ({ value: cnpj } as AbstractControl).cnpj).toBe(true))
+    const isValidReturn = isValidCNPJ({ value: cnpj } as AbstractControl)
+    it(`Invalid CPNJ: ${cnpj} ->`, () => expect(isValidReturn ? isValidReturn.cnpj : isValidReturn).toBe(true))
   })
 
   valids.forEach(cnpj => {

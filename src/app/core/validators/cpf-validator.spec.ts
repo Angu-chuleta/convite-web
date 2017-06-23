@@ -38,7 +38,8 @@ describe('CPF Validator', () => {
   })
 
   invalids.forEach(cpf => {
-    it(`Invalid CPF: ${cpf} ->`, () => expect(isValidCPF({ value: cpf } as AbstractControl).cpf).toBe(true))
+    const isValidReturn = isValidCPF({ value: cpf } as AbstractControl)
+    it(`Invalid CPF: ${cpf} ->`, () => expect(isValidReturn ? isValidReturn.cpf : isValidReturn).toBe(true))
   })
 
   valids.forEach(cpf => {

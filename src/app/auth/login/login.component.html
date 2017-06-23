@@ -1,0 +1,5 @@
+<inv-loading-logged-out *ngIf="loading"></inv-loading-logged-out>
+<div *ngIf="message">
+  <p><strong>{{message}}</strong></p>
+</div>
+<inv-login-form [credentials]="credentials" (onSubmit)="onSubmit($event)"></inv-login-form>

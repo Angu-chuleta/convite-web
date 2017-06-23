@@ -30,7 +30,8 @@ describe('DateBr Validator', () => {
   })
 
   invalids.forEach(date => {
-    it(`Invalid DATE: ${date} ->`, () => expect(isValidDate({ value: date } as AbstractControl).date).toBe(true))
+    const isValidReturn = isValidDate({ value: date } as AbstractControl)
+    it(`Invalid DATE: ${date} ->`, () => expect(isValidReturn ? isValidReturn.date : isValidReturn).toBe(true))
   })
 
   valids.forEach(date => {

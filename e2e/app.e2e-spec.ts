@@ -1,17 +1,14 @@
-import { InviteMeWebPage } from './app.po'
+import { Invite.MePage } from './app.po';
 
-describe('invite.me-web App', () => {
-  let page: InviteMeWebPage
+describe('invite.me App', () => {
+  let page: Invite.MePage;
 
   beforeEach(() => {
-    page = new InviteMeWebPage()
-  })
+    page = new Invite.MePage();
+  });
 
-  it('should display message saying InviteMe works', () => {
-    page.navigateTo()
-    page.getParagraphText().then(value => {
-      expect(value).toBe('InviteMe works', 'Título esperado não foi encontrado!')
-      return value
-    })
-  })
-})
+  it('should display welcome message', () => {
+    page.navigateTo();
+    expect(page.getParagraphText()).toEqual('Welcome to inv!!');
+  });
+});

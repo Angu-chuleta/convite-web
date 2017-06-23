@@ -1,4 +1,4 @@
-import { trigger, transition, style, animate } from '@angular/core'
+import { animate, style, transition, trigger } from '@angular/core'
 
 const fadeInOut = trigger( 'fadeInOut', [
   transition( 'void => *', [
@@ -10,4 +10,4 @@ const fadeInOut = trigger( 'fadeInOut', [
   ] )
 ] )
 
-export { fadeInOut };
+export { fadeInOut }

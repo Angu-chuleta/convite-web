@@ -9,20 +9,20 @@ import { isObject } from './is-object'
  * @param {any} source
  * @returns
  */
-export function immutableMerge( target: any, source: any ) {
-  let output = Object.assign( {}, target )
-  if ( isObject( target ) && isObject( source ) ) {
-    Object.keys( source ).forEach( key => {
-      if ( isObject( source[ key ] ) ) {
-        if ( !( key in target ) ) {
-          Object.assign( output, { [ key ]: source[ key ] } )
+export function immutableMerge (target: any, source: any) {
+  let output = Object.assign({}, target)
+  if (isObject(target) && isObject(source)) {
+    Object.keys(source).forEach(key => {
+      if (isObject(source[key])) {
+        if (!(key in target)) {
+          Object.assign(output, { [key]: source[key] })
         } else {
-          output[ key ] = immutableMerge( target[ key ], source[ key ] )
+          output[key] = immutableMerge(target[key], source[key])
         }
       } else {
-        Object.assign( output, { [ key ]: source[ key ] } )
+        Object.assign(output, { [key]: source[key] })
       }
-    } )
+    })
   }
   return output
 }

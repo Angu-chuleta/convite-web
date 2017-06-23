@@ -1,7 +1,7 @@
 import { AbstractControl } from '@angular/forms'
 
 /** A hero's name can't match the given regular expression */
-export function isValidDate(control: AbstractControl): { [key: string]: boolean } {
+export function isValidDate (control: AbstractControl): { [key: string]: boolean } | null {
   let check = false
 
   if (!control.value) { return null }

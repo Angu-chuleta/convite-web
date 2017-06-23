@@ -1,10 +1,27 @@
 import { NgModule } from '@angular/core'
-import { Routes, RouterModule } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router'
+import { AuthRouterGuard } from 'app/core/auth'
 
 const routes: Routes = [
   {
     path: '',
-    children: []
+    redirectTo: 'auth',
+    pathMatch: 'full'
+  },
+  {
+    path: 'auth',
+    loadChildren: 'app/auth/auth.module#AuthModule',
+    canActivate: [AuthRouterGuard],
+    canLoad: [AuthRouterGuard]
+  },
+  {
+    path: 'errors',
+    loadChildren: 'app/errors/errors.module#ErrorsModule'
+  },
+  {
+    path: '**',
+    redirectTo: 'errors/404',
+    pathMatch: 'full'
   }
 ]
 

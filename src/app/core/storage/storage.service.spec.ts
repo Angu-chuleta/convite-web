@@ -1,7 +1,7 @@
-import { TestBed, inject } from '@angular/core/testing'
+import { inject, TestBed } from '@angular/core/testing'
 import { StorageService } from './storage.service'
 
-const TEST = {
+const TEST: any = {
   'unit-test': { value: 'unit test' },
   'unit-test-2': ['value2'],
   'unit-test-3': 'value3'
@@ -78,6 +78,11 @@ describe('StorageService', () => {
     // Obtendo item por number
     let itemClone = service.getItem(0)
     expect(itemClone).toBeDefined('Ao tentar obter item inserido por number key, obteve-se algo indefinido!')
+  }))
+
+  it('Get item with invalid key number ->', inject([StorageService], (service: StorageService) => {
+    let itemClone = service.getItem(99)
+    expect(itemClone).toBeUndefined()
   }))
 
   it('Update non-existent item', inject([StorageService], (service: StorageService) => {

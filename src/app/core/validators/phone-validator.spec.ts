@@ -2,7 +2,7 @@ import { AbstractControl } from '@angular/forms'
 import { isValidPhone } from './phone-validator'
 
 const invalids = [
-  ...new Array<string>(10).fill('').map(() => Math.round(Math.random() * 100000000).toString()),
+  ...new Array<string>(10).fill('').map(() => Math.round(Math.random() * 1000000000).toString()),
   '2733333333',
   '1000000000',
   '0098765432',
@@ -13,7 +13,7 @@ const invalids = [
 
 const valids = [
   ...new Array<string>(10).fill('').map(() => {
-    let n = Math.round(Math.random() * 1000000000000).toString()
+    let n = Math.round(Math.random() * (10000000000000 - 100000000) + 100000000).toString()
     return `(${n.substr(0, 2)}) ${n.substr(3, 4)}-${n.substr(6, 4)}`
   }),
   '(27) 3333-3333',
@@ -33,7 +33,8 @@ describe('Phone Validator', () => {
   })
 
   invalids.forEach(phone => {
-    it(`Invalid phone: ${phone} ->`, () => expect(isValidPhone({ value: phone } as AbstractControl).phone).toBe(true))
+    const isValidReturn = isValidPhone({ value: phone } as AbstractControl)
+    it(`Invalid phone: ${phone} ->`, () => expect(isValidReturn ? isValidReturn.phone : isValidReturn).toBe(true))
   })
 
   valids.forEach(phone => {

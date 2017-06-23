@@ -1,1 +1,5 @@
+export * from './footer/footer.component'
+export * from './layouts'
+export * from './loading-logged-out/loading-logged-out.component'
+export * from './logo/logo.component'
 export * from './validation-message/validation-message.component'
