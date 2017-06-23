@@ -11,7 +11,7 @@ export class StorageService {
    *
    * @memberOf StorageService
    */
-  public setItem(key: string, value: any) {
+  public setItem (key: string, value: any) {
     localStorage.setItem(key, this.convertValue(value))
   }
 
@@ -23,8 +23,14 @@ export class StorageService {
    *
    * @memberOf Store
    */
-  public getItem(key: string | number) {
-    let value = typeof key !== 'number' ? localStorage.getItem(key) : localStorage.getItem(localStorage.key(key))
+  public getItem (key: string | number) {
+    let value: string | null
+    if (typeof key !== 'number') {
+      value = localStorage.getItem(key)
+    } else {
+      const assertKey: string | null = localStorage.key(key)
+      value = assertKey ? localStorage.getItem(assertKey) : null
+    }
     return this.unconvertValue(value)
   }
 
@@ -35,7 +41,7 @@ export class StorageService {
    *
    * @memberOf Store
    */
-  public removeItem(key: string) {
+  public removeItem (key: string) {
     localStorage.removeItem(key)
   }
 
@@ -47,7 +53,7 @@ export class StorageService {
    *
    * @memberOf Storage
    */
-  public updateItem(key: string, updates: any) {
+  public updateItem (key: string, updates: any) {
     const obj = this.getItem(key)
     if (typeof obj === 'string' || typeof obj === 'boolean') {
       this.setItem(key, updates)
@@ -62,7 +68,7 @@ export class StorageService {
    *
    * @memberOf Store
    */
-  public clear() {
+  public clear () {
     localStorage.clear()
   }
 
@@ -75,7 +81,7 @@ export class StorageService {
    *
    * @memberOf Store
    */
-  private convertValue(value: any): any {
+  private convertValue (value: any): any {
     return typeof value !== 'object' ? value : JSON.stringify(value)
   }
 
@@ -83,12 +89,12 @@ export class StorageService {
    *
    *
    * @private
-   * @param {any} value
+   * @param {string|null} value
    * @returns
    *
    * @memberOf Store
    */
-  private unconvertValue(value: string) {
+  private unconvertValue (value: string | null) {
     if (value !== null) {
       if (value.indexOf('{') === 0 || value.indexOf('[') === 0) {
         return JSON.parse(value)

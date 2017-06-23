@@ -1,0 +1,29 @@
+<form novalidate [formGroup]="form" (ngSubmit)="onSubmitClick(form.value)">
+  <div class="form-group">
+    <input type="text" placeholder="Nome" formControlName="name">
+    <inv-validation-message [errors]="validationErrors['name']"></inv-validation-message>
+  </div>
+
+  <div class="form-group">
+    <input type="email" placeholder="Email" formControlName="email">
+    <inv-validation-message [errors]="validationErrors['email']"></inv-validation-message>
+  </div>
+
+  <div class="form-group">
+    <input type="password" placeholder="Senha" formControlName="password">
+    <inv-validation-message [errors]="validationErrors['password']"></inv-validation-message>
+  </div>
+
+  <div class="form-group">
+    <input type="password" placeholder="Confirmação de senha" formControlName="confirm">
+    <inv-validation-message [errors]="validationErrors['confirm']"></inv-validation-message>
+  </div>
+
+  <button color="primary" type="submit" color="accent">Cadastrar</button>
+
+  <div class="additional-info">
+    Já possui uma conta?
+    <a routerLink="/auth/login">Fazer login</a>
+  </div>
+
+</form>

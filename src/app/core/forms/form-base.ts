@@ -1,25 +1,25 @@
-import { Output, EventEmitter } from '@angular/core'
+import { EventEmitter, Output } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 
 import {
   isValidCellPhone,
+  isValidCNPJ,
   isValidCPF,
   isValidDate,
-  isValidPhone,
-  isValidCNPJ,
   isValidEmail,
+  isValidPhone,
   isValidZipCode
 } from '../validators'
 
 import {
-  CNPJ_MASK,
-  CEP_MASK,
-  PHONE_MASK,
   CELL_PHONE_MASK,
-  DATE_MASK,
+  CEP_MASK,
+  CNPJ_MASK,
   CREDICARD_MASK,
-  YEAR_MASK,
-  PLATE_MASK
+  DATE_MASK,
+  PHONE_MASK,
+  PLATE_MASK,
+  YEAR_MASK
 } from '../utils/masks/masks'
 
 export type ValidationMessages = { [key: string]: { [key: string]: string; }; }
@@ -28,6 +28,52 @@ export type ValidationErrors = { [key: string]: string[]; }
 export abstract class FormBase {
 
   @Output() public onSubmit = new EventEmitter<any>()
+
+  public get isValid (): boolean {
+    return this.form.valid
+  }
+
+  /**
+   *
+   *
+   *
+   * @memberof FormBase
+   */
+  public masks = {
+    cnpj: CNPJ_MASK,
+    cep: CEP_MASK,
+    phone: PHONE_MASK,
+    cellphone: CELL_PHONE_MASK,
+    date: DATE_MASK,
+    credicard: CREDICARD_MASK,
+    year: YEAR_MASK,
+    plate: PLATE_MASK
+  }
+
+  /**
+   *
+   *
+   * @type {FormGroup}
+   * @memberof FormBase
+   */
+  public form: FormGroup
+
+  /**
+   *
+   *
+   * @abstract
+   * @type {ValidationMessages}
+   * @memberof FormBase
+   */
+  public abstract validationMessages: ValidationMessages
+
+  /**
+   *
+   *
+   * @type {ValidationErrors}
+   * @memberof FormBase
+   */
+  public validationErrors: ValidationErrors = {}
 
   /**
    *
@@ -47,57 +93,28 @@ export abstract class FormBase {
   }
 
   /**
-   *
-   *
-   * @protected
+   * Creates an instance of FormBase.
    *
    * @memberOf FormBase
    */
-  protected masks = {
-    cnpj: CNPJ_MASK,
-    cep: CEP_MASK,
-    phone: PHONE_MASK,
-    cellphone: CELL_PHONE_MASK,
-    date: DATE_MASK,
-    credicard: CREDICARD_MASK,
-    year: YEAR_MASK,
-    plate: PLATE_MASK
+  constructor (protected formBuilder: FormBuilder) {
+    this.createForm()
   }
 
   /**
    *
    *
-   * @protected
-   * @type {FormGroup}
-   * @memberOf FormBase
+   * @param {*} formModel
+   *
+   * @memberof FormBase
    */
-  protected form: FormGroup
-
-  /**
-   *
-   *
-   * @abstract
-   * @type {{ [ key: string ]: string; }}
-   * @memberOf FormBase
-   */
-  protected abstract validationMessages: ValidationMessages
-
-  /**
-   *
-   *
-   * @abstract
-   * @type {{ [ key: string ]: string; }}
-   * @memberOf FormBase
-   */
-  protected validationErrors: ValidationErrors = {}
-
-  /**
-   * Creates an instance of FormBase.
-   *
-   * @memberOf FormBase
-   */
-  constructor(protected formBuilder: FormBuilder) {
-    this.createForm()
+  public onSubmitClick (formModel: any) {
+    if (!this.form.valid) {
+      this.showErrors()
+      return
+    }
+    formModel = this.prepareFormModel(formModel)
+    this.onSubmit.emit(formModel)
   }
 
   /**
@@ -109,48 +126,18 @@ export abstract class FormBase {
    *
    * @memberOf FormBase
    */
-  protected abstract createFormModel(): FormGroup
+  protected abstract createFormModel (): FormGroup
 
   /**
    *
    *
    * @protected
-   * @param {*} [data]
    *
    * @memberOf FormBase
    */
-  protected updateErrors(data?: any) {
+  protected updateErrors () {
     this.validationErrors = this.getValidationErrors(this.form, this.validationMessages)
   }
-
-  /**
-   *
-   *
-   * @protected
-   * @param {*} entity
-   *
-   * @memberOf FormBase
-   */
-  protected onSubmitClick(formModel: any) {
-    if (!this.form.valid) {
-      this.showErrors()
-      return
-    }
-    formModel = this.prepareFormModel(formModel)
-    this.submitForm(formModel)
-    this.onSubmit.emit(formModel)
-  }
-
-  /**
-   *
-   *
-   * @protected
-   * @abstract
-   * @param {*} entity
-   *
-   * @memberOf FormBase
-   */
-  protected submitForm(entity: any) { }
 
   /**
    *
@@ -161,7 +148,7 @@ export abstract class FormBase {
    *
    * @memberOf FormBase
    */
-  protected prepareFormModel(formModel: any): any { return formModel }
+  protected prepareFormModel (formModel: any): any { return formModel }
 
   /**
    *
@@ -170,9 +157,12 @@ export abstract class FormBase {
    *
    * @memberOf FormBase
    */
-  protected showErrors(): void {
+  protected showErrors (): void {
     Object.keys(this.form.controls).forEach(key => {
-      this.form.get(key).markAsTouched()
+      let value = this.form.get(key)
+      if (value) {
+        value.markAsTouched()
+      }
       this.updateErrors()
     })
   }
@@ -185,11 +175,14 @@ export abstract class FormBase {
    *
    * @memberOf FormBase
    */
-  protected setAllControlsState(isDisabled: boolean): void {
+  protected setAllControlsState (isDisabled: boolean): void {
     Object.keys(this.form.controls).forEach(key => {
-      isDisabled
-        ? this.form.get(key).disable()
-        : this.form.get(key).enable()
+      let value = this.form.get(key)
+      if (value) {
+        isDisabled
+          ? value.disable()
+          : value.enable()
+      }
     })
   }
 
@@ -203,7 +196,7 @@ export abstract class FormBase {
    *
    * @memberOf FormBase
    */
-  protected getValidationErrors(form: FormGroup, validationMessages: ValidationMessages): ValidationErrors {
+  protected getValidationErrors (form: FormGroup, validationMessages: ValidationMessages): ValidationErrors {
     if (!form || !validationMessages) {
       return {}
     }
@@ -212,12 +205,13 @@ export abstract class FormBase {
 
     for (const field in errors) {
       const control = form.get(field)
-      if (control && control.touched && !control.valid) {
+      if (control && control.touched && !control.valid && control.errors) {
         const messages = validationMessages[field]
 
         for (const key in control.errors) {
           errors[field].push(`${messages[key]} `)
         }
+
       }
     }
     return errors
@@ -230,9 +224,9 @@ export abstract class FormBase {
    *
    * @memberOf ProfileFormComponent
    */
-  protected createForm(): void {
+  protected createForm (): void {
     this.form = this.createFormModel()
-    this.form.valueChanges.subscribe(data => this.updateErrors(data))
+    this.form.valueChanges.subscribe(() => this.updateErrors())
     this.updateErrors() // (re)set validation messages now
   }
 }

@@ -1,17 +1,14 @@
-import { InviteMeWebPage } from './app.po'
+import { InviteMePage } from './app.po'
 
-describe('invite.me-web App', () => {
-  let page: InviteMeWebPage
+describe('invite.me App', () => {
+  let page: InviteMePage
 
   beforeEach(() => {
-    page = new InviteMeWebPage()
+    page = new InviteMePage()
   })
 
-  it('should display message saying InviteMe works', () => {
+  it('should display welcome message', () => {
     page.navigateTo()
-    page.getParagraphText().then(value => {
-      expect(value).toBe('InviteMe works', 'Título esperado não foi encontrado!')
-      return value
-    })
+    expect(page.getTitle()).toEqual('Login')
   })
 })

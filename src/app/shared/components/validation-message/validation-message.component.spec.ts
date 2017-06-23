@@ -2,15 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { ValidationMessageComponent } from './validation-message.component'
 
-describe('ValidationMessageComponent ->', () => {
+describe('ValidationMessageComponent', () => {
   let component: ValidationMessageComponent
   let fixture: ComponentFixture<ValidationMessageComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ValidationMessageComponent ]
+      declarations: [ValidationMessageComponent]
     })
-    .compileComponents()
+      .compileComponents()
   }))
 
   beforeEach(() => {
@@ -19,8 +19,7 @@ describe('ValidationMessageComponent ->', () => {
     fixture.detectChanges()
   })
 
-  it('should create ->', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy()
   })
-
 })

@@ -1,25 +1,18 @@
-import { config } from './app.config'
+import { GRC_CONFIG } from './app.config'
 
 describe('AppConfig Test ->', () => {
 
   it('Is defined ->', () => {
-    expect(config).toBeDefined('Config não está definido!')
+    expect(GRC_CONFIG).toBeDefined('Config não está definido!')
   })
 
-  it('Backend server test ->', done => {
-    let xhr = new XMLHttpRequest()
-    xhr.open('GET', `${config.apiEndPoint}/status/200`, true)
-    xhr.send(null)
-    xhr.onload = e => {
-      if (xhr.readyState === 4) {
-        expect(xhr.status).toBe(200, 'Servidor respondeu status diferente de 200')
-        done()
-      }
-    }
-    xhr.onerror = err => {
-      expect(err).toBeUndefined()
-      done()
-    }
+  it('All properties ->', () => {
+    // API Endpoint
+    expect(GRC_CONFIG.apiEndPoint).not.toBeUndefined('Api endpoint is undefined')
+    expect(GRC_CONFIG.apiEndPoint).not.toBeNull('Api endpoint is null')
+    // Token name
+    expect(GRC_CONFIG.tokenName).not.toBeUndefined('Token name is undefined')
+    expect(GRC_CONFIG.tokenName).not.toBeNull('Token name is null')
   })
 
 })

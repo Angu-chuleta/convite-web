@@ -1,0 +1,12 @@
+<div class="site-container" [ngClass]="{'open-sidebar': openedSidebar}">
+  <!--<inv-navbar [title]="pageTitle" (sidebarState)="sidebarState()"></inv-navbar>-->
+
+  <!--<inv-sidebar></inv-sidebar>-->
+
+  <main class="main-content">
+    <div class="main-content-wrap">
+      <ng-content></ng-content>
+    </div>
+    <!--<inv-footer></inv-footer>-->
+  </main>
+</div>

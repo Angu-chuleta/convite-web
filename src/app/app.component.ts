@@ -1,10 +1,8 @@
 import { Component } from '@angular/core'
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
+  selector: 'inv-root',
+  template: '<router-outlet></router-outlet>',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'InviteMe works'
-}
+export class AppComponent { }

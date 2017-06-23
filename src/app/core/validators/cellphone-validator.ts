@@ -1,7 +1,7 @@
 import { AbstractControl } from '@angular/forms'
 
 /** A hero's name can't match the given regular expression */
-export function isValidCellPhone( control: AbstractControl ) {
+export function isValidCellPhone ( control: AbstractControl ) {
 
   if ( !control.value ) { return null }
 

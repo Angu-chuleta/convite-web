@@ -1,6 +1,7 @@
-import { environment } from './../../environments/environment'
+import { environment } from 'environments'
 
-export const config = {
+export const GRC_CONFIG = {
   apiEndPoint: environment.apiEndpoint,
-  tokenName: `iv-jwt-token-${environment.envName}`
+  tokenName: `inv-jwt-token-${environment.envName}`,
+  version: '0.0.0'
 }

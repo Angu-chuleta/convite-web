@@ -1,5 +1,6 @@
-export const environment = {
+import { IEnvironment } from 'interfaces'
+export const environment: IEnvironment = {
+  envName: 'prod',
   production: true,
-  apiEndpoint: 'https://httpbin.org',
-  envName: 'prod'
+  apiEndpoint: '/api/v1'
 }

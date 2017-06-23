@@ -1,19 +1,21 @@
-import { AbstractControl } from '@angular/forms'
+import { FormControl } from '@angular/forms'
 import { passwordMatcher } from './password-matcher'
 
-const fakeControl = (value, confirm) => {
+const fakeControl = (value: any, confirm: any): FormControl => {
   return {
-    get: (key) => {
-      switch (key) {
-        case 'password':
-          return value ? { value: value } : null
-        case 'confirm':
-          return value ? { value: confirm } : null
-        default:
-          return null
+    root: {
+      get: (key: string) => {
+        switch (key) {
+          case 'password':
+            return value ? { value: value } : null
+          case 'confirm':
+            return value ? { value: confirm } : null
+          default:
+            return null
+        }
       }
     }
-  }
+  } as FormControl
 }
 
 const invalids = [
@@ -37,11 +39,14 @@ describe('Cellphone Validator', () => {
   })
 
   invalids.forEach(duoEquals => {
-    it(`Invalid cellphone: ${duoEquals} ->`, () => expect(passwordMatcher(fakeControl(duoEquals[0], duoEquals[1]) as AbstractControl).noMatchPassword).toBe(true))
+    const passMatch = passwordMatcher(fakeControl(duoEquals[0], duoEquals[1]))
+    it(`Invalid cellphone: ${duoEquals} ->`, () => expect(passMatch ? passMatch.noMatchPassword : passMatch).toBe(true))
   })
 
   valids.forEach(duoEquals => {
-    it(`Valid cellphone: ${duoEquals}`, () => expect(passwordMatcher(fakeControl(duoEquals[0], duoEquals[1]) as AbstractControl)).toBeNull())
+    it(`Valid cellphone: ${duoEquals}`, () => {
+      expect(passwordMatcher(fakeControl(duoEquals[0], duoEquals[1]))).toBeNull()
+    })
   })
 
 })

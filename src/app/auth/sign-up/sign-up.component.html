@@ -1,0 +1,16 @@
+<inv-loading-logged-out *ngIf="loading"></inv-loading-logged-out>
+<div *ngIf="token; then hasToken else noToken"></div>
+
+<ng-template #hasToken>
+    <div *ngIf="alert.message">
+      <p><strong>{{alert.message}}</strong></p>
+    </div>
+    <inv-sign-up-form [email]="email" (onSubmit)="signUp($event)"></inv-sign-up-form>
+</ng-template>
+
+<ng-template #noToken>
+    <div *ngIf="alert.message">
+      <p><strong>{{alert.message}}</strong></p>
+    </div>
+    <inv-pre-sign-up-form (onSubmit)="preSignUp($event)"></inv-pre-sign-up-form>
+</ng-template>

@@ -13,31 +13,32 @@ const invalids = [
 
 const valids = [
   ...new Array<string>(10).fill('').map(() => {
-    let n = Math.round(Math.random() * 1000000000000).toString()
-    return `(${n.substr(0, 2)}) ${n.substr(2, 1)} ${n.substr(3, 4)}-${n.substr(6, 4)}`
+    let n = Math.round(Math.random() * (10000000000000 - 100000000) + 100000000).toString()
+    return `(${n.substr(0, 2)}) 9 ${n.substr(3, 4)}-${n.substr(6, 4)}`
   }),
   '(27) 9 9999-9999',
-  '(28) 9 9999-9998',
-  '(31) 9 9999-9997',
-  '(72) 9 9999-9996',
-  '(60) 9 9999-9995',
-  '(11) 9 9999-9994',
+  '(28) 9 9899-9998',
+  '(31) 9 8999-9997',
+  '(72) 9 9399-9996',
+  '(60) 9 9299-9995',
+  '(11) 9 9199-9994',
   null
 ]
 
-describe('Cellphone Validator', () => {
+describe('Cellphone Validator ->', () => {
 
-  it('Is defined', () => {
+  it('Is defined ->', () => {
     expect(isValidCellPhone).toBeDefined()
     expect(typeof isValidCellPhone).toBe('function')
   })
 
   invalids.forEach(cellphone => {
-    it(`Invalid cellphone: ${cellphone} ->`, () => expect(isValidCellPhone({ value: cellphone } as AbstractControl).cellphone).toBe(true))
+    const isValidReturn = isValidCellPhone({ value: cellphone } as AbstractControl)
+    it(`Invalid cellphone: ${cellphone} ->`, () => expect( isValidReturn ? isValidReturn.cellphone : isValidReturn).toBe(true))
   })
 
   valids.forEach(cellphone => {
-    it(`Valid cellphone: ${cellphone}`, () => expect(isValidCellPhone({ value: cellphone } as AbstractControl)).toBeNull())
+    it(`Valid cellphone: ${cellphone} ->`, () => expect(isValidCellPhone({ value: cellphone } as AbstractControl)).toBeNull())
   })
 
 })

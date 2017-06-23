@@ -31,7 +31,8 @@ describe('Email Validator', () => {
   })
 
   invalids.forEach(email => {
-    it(`Invalid EMAIL: ${email} ->`, () => expect(isValidEmail({ value: email } as AbstractControl).email).toBe(true))
+    const isValidReturn = isValidEmail({ value: email } as AbstractControl)
+    it(`Invalid EMAIL: ${email} ->`, () => expect(isValidReturn ? isValidReturn.email : isValidReturn).toBe(true))
   })
 
   valids.forEach(email => {

@@ -3,7 +3,7 @@ import { AbstractControl } from '@angular/forms'
 /**
  * Faz a validação de E-mail
  */
-export const isValidEmail = ( control: AbstractControl ): { [ key: string ]: boolean } => {
+export const isValidEmail = ( control: AbstractControl ): { [ key: string ]: boolean } | null => {
 
   if ( !control.value ) { return null }
 
