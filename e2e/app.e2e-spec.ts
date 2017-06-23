@@ -1,14 +1,14 @@
-import { Invite.MePage } from './app.po';
+import { InviteMePage } from './app.po'
 
 describe('invite.me App', () => {
-  let page: Invite.MePage;
+  let page: InviteMePage
 
   beforeEach(() => {
-    page = new Invite.MePage();
-  });
+    page = new InviteMePage()
+  })
 
   it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to inv!!');
-  });
-});
+    page.navigateTo()
+    expect(page.getTitle()).toEqual('Login')
+  })
+})
