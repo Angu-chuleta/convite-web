@@ -19,7 +19,8 @@ dependencies:
     - yarn && yarn build -- -prod
 test:
   override:
-    - yarn lint && yarn test -- --single-run -cc -sm && yarn e2e
+    - yarn lint -- --type-check && yarn test -- --single-run -cc -sm && yarn e2e
+    - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deployment:
   prod:
     tag: /v[0-9]+(\.[0-9]+)+(-rev[0-9]+)?/ # v1.2.3 and v1.2.3-rev1
@@ -30,3 +31,5 @@ deployment:
       - echo \sonar.password=$(echo $SONAR_PASSWORD) >> sonar-project.properties
       - echo \sonar.projectVersion=$(echo $CIRCLE_TAG) >> sonar-project.properties
       - ./sonar-scanner-2.8/bin/sonar-scanner
+      # deploy script
+      - sh deploy.sh
