@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { AuthRouterGuard } from 'app/core/auth'
+import { AuthRouterGuard, IsLoggedInGuard } from 'app/core/auth'
 
 const routes: Routes = [
   {
@@ -13,6 +13,12 @@ const routes: Routes = [
     loadChildren: 'app/auth/auth.module#AuthModule',
     canActivate: [AuthRouterGuard],
     canLoad: [AuthRouterGuard]
+  },
+  {
+    path: 'dashboard',
+    loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
+    canLoad: [IsLoggedInGuard],
+    canActivate: [IsLoggedInGuard]
   },
   {
     path: 'errors',
