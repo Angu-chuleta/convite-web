@@ -127,4 +127,8 @@ export class AuthService extends BaseService {
       .catch(this.handleError)
   }
 
+  public logout (): void {
+    this.tokenStorage.remove()
+  }
+
 }

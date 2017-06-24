@@ -10,6 +10,8 @@ import {
   LayoutExtraComponent,
   LoadingLoggedOutComponent,
   LogoComponent,
+  NavbarComponent,
+  SidebarComponent,
   ValidationMessageComponent
 } from './components'
 
@@ -20,6 +22,8 @@ import {
     LayoutExtraComponent,
     LoadingLoggedOutComponent,
     LogoComponent,
+    NavbarComponent,
+    SidebarComponent,
     ValidationMessageComponent
   ],
   imports: [
@@ -41,6 +45,8 @@ import {
     LayoutExtraComponent,
     LoadingLoggedOutComponent,
     LogoComponent,
+    NavbarComponent,
+    SidebarComponent,
     ValidationMessageComponent
   ],
   providers: [
