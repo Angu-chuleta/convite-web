@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { HttpModule } from '@angular/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
+import { RouterTestingModule } from '@angular/router/testing'
 import { CoreModule } from 'app/core'
 import { AuthService } from 'app/core/auth'
 import { SharedModule } from 'app/shared'
@@ -36,7 +37,8 @@ describe('AuthComponent ->', () => {
         BrowserAnimationsModule,
         SharedModule,
         CoreModule,
-        HttpModule
+        HttpModule,
+        RouterTestingModule
       ],
       providers: [
         { provide: Router, useClass: RouterStub },

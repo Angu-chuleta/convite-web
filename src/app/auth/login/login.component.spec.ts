@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { CoreModule } from 'app/core'
 import { AuthService } from 'app/core/auth'
 import { SharedModule } from 'app/shared'
-import { AuthStub, RouterStub } from 'stubs'
+import { ActivatedRouteStub, AuthStub, RouterStub } from 'stubs'
 import { LoginFormComponent } from './login-form/login-form.component'
 import { LoginComponent } from './login.component'
 
@@ -25,7 +25,8 @@ describe('LoginComponent ->', () => {
       ],
       providers: [
         { provide: Router, useClass: RouterStub },
-        { provide: AuthService, useClass: AuthStub }
+        { provide: AuthService, useClass: AuthStub },
+        { provide: ActivatedRoute, useClass: ActivatedRouteStub }
       ]
     })
       .compileComponents()
