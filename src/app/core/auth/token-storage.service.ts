@@ -38,4 +38,14 @@ export class TokenStorageService {
     this.token.next(token)
   }
 
+  /**
+   * Remove token
+   *
+   * @memberof TokenStorageService
+   */
+  remove (): void {
+    this.storage.removeItem(this.key)
+    this.token.next(undefined as any)
+  }
+
 }
