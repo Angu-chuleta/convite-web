@@ -1,6 +1,7 @@
 import { InviteMePage } from './app.po'
 
 describe('invite.me App', () => {
+
   let page: InviteMePage
 
   beforeEach(() => {
