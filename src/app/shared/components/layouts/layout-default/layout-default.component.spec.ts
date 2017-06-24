@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { RouterTestingModule } from '@angular/router/testing'
+import { CoreModule } from 'app/core'
+import { SharedModule } from 'app/shared'
 import { RouterLinkActiveOptionsStub, RouterLinkStubDirective } from 'stubs'
-import { FooterComponent } from '../../footer/footer.component'
-import { LogoComponent } from '../../logo/logo.component'
 import { LayoutDefaultComponent } from './layout-default.component'
 
 describe('LayoutDefaultComponent', () => {
@@ -11,13 +12,13 @@ describe('LayoutDefaultComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        FooterComponent,
-        LogoComponent,
         RouterLinkActiveOptionsStub,
-        RouterLinkStubDirective,
-        LayoutDefaultComponent
+        RouterLinkStubDirective
       ],
       imports: [
+        CoreModule,
+        RouterTestingModule,
+        SharedModule
       ],
       providers: [
       ]
