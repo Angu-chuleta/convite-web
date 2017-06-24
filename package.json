@@ -37,6 +37,7 @@
     "@types/jasmine": "2.5.45",
     "@types/jquery": "^3.2.4",
     "@types/node": "~6.0.60",
+    "codacy-coverage": "^2.0.2",
     "codelyzer": "~3.0.1",
     "coveralls": "^2.13.1",
     "jasmine-core": "~2.6.2",
