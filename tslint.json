@@ -1,44 +1,58 @@
 {
-  "extends": "tslint-config-standard",
-  "rulesDirectory": [
-    "node_modules/codelyzer"
+  "extends": [
+    "tslint-config-standard"
   ],
+  "env": {
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
   "rules": {
-    "space-before-function-paren": [
+    "max-line-length": [
+      240
+    ],
+    "no-constant-condition": true,
+    "align": [
+      true,
+      "parameters",
+      "statements"
+    ],
+    "jsdoc-format": true,
+    "semicolon": [
       true,
       "never"
     ],
-    "no-empty": false,
-    "member-ordering": [
-      false
-    ],
-    "import-blacklist": [
+    "typedef-whitespace": [
       true,
-      "rxjs"
+      {
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
     ],
-    "directive-selector": [
+    "no-unused-expression": true,
+    "no-consecutive-blank-lines": [
       true,
-      "attribute",
-      "app",
-      "camelCase"
+      2
     ],
-    "component-selector": [
+    "no-empty": true,
+    "no-for-in-array": true,
+    "no-duplicate-variable": true,
+    "no-var-keyword": true,
+    "no-use-before-declare": true,
+    "no-unnecessary-initializer": true,
+    "ordered-imports": true,
+    "return-undefined": true,
+    "variable-name": [
       true,
-      "element",
-      [
-        "app",
-        "bee"
-      ],
-      "kebab-case"
+      "ban-keywords",
+      "check-format"
     ],
-    "use-input-property-decorator": true,
-    "use-output-property-decorator": true,
-    "use-host-property-decorator": true,
-    "no-attribute-parameter-decorator": true,
-    "no-input-rename": true,
-    "no-output-rename": true,
-    "no-forward-ref": true,
-    "use-life-cycle-interface": true,
-    "use-pipe-transform-interface": true
+    "handle-callback-err": false,
+    "no-console": [
+      true, "debug", "info", "assert", "count", "table", "warn"
+    ],
+    "no-floating-promises": false
   }
 }

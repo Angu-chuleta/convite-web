@@ -1,0 +1,47 @@
+<form novalidate [formGroup]="form" (ngSubmit)="onSubmitClick(form.value)">
+  <h1>Login</h1>
+  <div class="alert alert-danger fade in" role="alert" *ngIf="error" style="letter-spacing: 1px;">
+    {{error}}
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="email" placeholder="Email" formControlName="email">
+    <inv-validation-message [errors]="validationErrors['email']"></inv-validation-message>
+  </div>
+
+  <div class="form-group">
+    <input class="form-control" type="password" placeholder="Senha" formControlName="password">
+    <inv-validation-message [errors]="validationErrors['password']"></inv-validation-message>
+  </div>
+
+  <div class="form-group">
+    <label for="keepLogin">
+      <input id="keepLogin" type="checkbox" formControlName="keepLogin"> Manter-me conectado!
+    </label>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-default submit" type="submit">Entrar</button>
+    <a class="reset_pass" routerLink="/auth/forgot">Esqueceu sua senha?</a>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="separator">
+    <p class="change_link">Novo por aqui?
+      <a class="to_register" routerLink="/auth/signup">Cadastre-se</a>
+    </p>
+
+    <div class="clearfix"></div>
+    <br />
+
+    <div>
+      <a class="site_title" routerLink="/" ngClass="{reverse: reverse">
+        <i class="fa fa-envelope-open-o"></i> 
+        <span class="logo-text">Invite.Me</span>
+      </a>
+      <p>©2017 Todos os direitos reservados.</p>
+      <p>Invite.Me &reg; Facilidade em gerência de eventos.</p>
+      <p>Privacidade e Termos</p>
+    </div>
+  </div>
+</form>

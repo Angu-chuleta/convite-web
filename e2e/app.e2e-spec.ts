@@ -1,14 +1,14 @@
-import { ConviteWebPage } from './app.po'
+import { InviteMePage } from './app.po'
 
-describe('convite-web App', () => {
-  let page: ConviteWebPage
+describe('invite.me App', () => {
+  let page: InviteMePage
 
   beforeEach(() => {
-    page = new ConviteWebPage()
+    page = new InviteMePage()
   })
 
-  it('should display message saying Convite works', () => {
+  it('should display welcome message', () => {
     page.navigateTo()
-    expect(page.getParagraphText()).toEqual('Convite works')
+    expect(page.getTitle()).toEqual('Login')
   })
 })
