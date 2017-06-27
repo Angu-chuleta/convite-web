@@ -1,14 +1,11 @@
 # Invite.Me
 
 [![CircleCI](https://circleci.com/gh/ifhack/convite-web/tree/develop.svg?style=svg)](https://circleci.com/gh/ifhack/convite-web/tree/develop)
-
 [![dependencies Status](https://david-dm.org/ifhack/convite-web/status.svg)](https://david-dm.org/ifhack/convite-web)
-
 [![devDependencies Status](https://david-dm.org/ifhack/convite-web/dev-status.svg)](https://david-dm.org/ifhack/convite-web?type=dev)
-
 [![Known Vulnerabilities](https://snyk.io/test/github/ifhack/convite-web/badge.svg)](https://snyk.io/test/github/ifhack/convite-web)
-
 [![Coverage Status](https://coveralls.io/repos/github/ifhack/convite-web/badge.svg?branch=develop)](https://coveralls.io/github/ifhack/convite-web?branch=develop)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a31f5c8a7e0c4d69a4eba4fcc0de5bc3)](https://www.codacy.com/app/davidpvilaca/convite-web?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ifhack/convite-web&amp;utm_campaign=Badge_Grade)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.3.
 
