@@ -1,5 +1,6 @@
 # Invite.Me
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a31f5c8a7e0c4d69a4eba4fcc0de5bc3)](https://www.codacy.com/app/davidpvilaca/convite-web?utm_source=github.com&utm_medium=referral&utm_content=ifhack/convite-web&utm_campaign=badger)
 [![CircleCI](https://circleci.com/gh/ifhack/convite-web/tree/develop.svg?style=svg)](https://circleci.com/gh/ifhack/convite-web/tree/develop)
 
 [![dependencies Status](https://david-dm.org/ifhack/convite-web/status.svg)](https://david-dm.org/ifhack/convite-web)
