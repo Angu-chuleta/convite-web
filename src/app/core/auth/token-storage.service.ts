@@ -24,6 +24,16 @@ export class TokenStorageService {
   }
 
   /**
+   * GET síncrono do token de autenticação
+   *
+   * @returns {string}
+   * @memberof TokenStorageService
+   */
+  get (): string {
+    return this.storage.getItem(this.key)
+  }
+
+  /**
    * Set token
    *
    * @param {string} token
