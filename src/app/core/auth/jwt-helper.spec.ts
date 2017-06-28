@@ -42,7 +42,7 @@ describe('jwt-helper', () => {
   }))
 
   it('is token expired? ->', inject([JwtHelper], (service: JwtHelper) => {
-    expect(typeof service.isTokenExpired(validToken) === 'boolean').toBe(true)
+    expect(() => service.isTokenExpired(validToken)).not.toThrow()
     invalidTokens.forEach(token => {
       expect(() => service.isTokenExpired(token)).toThrow()
     })
