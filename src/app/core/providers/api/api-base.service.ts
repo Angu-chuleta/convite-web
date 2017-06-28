@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Http, Response } from '@angular/http'
 import { GRC_CONFIG } from 'app/core'
+import { IBase } from 'interfaces'
+import { FactoryModel } from 'models'
 import 'rxjs/add/operator/catch'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/share'
@@ -10,11 +12,12 @@ import { BaseService } from '../base.service'
 type Params = { [key: string]: number | string }
 
 @Injectable()
-export abstract class ApiBaseService<T extends { id: string }> extends BaseService {
+export abstract class ApiBaseService<T extends IBase> extends BaseService {
 
   protected apiEndPoint: string = GRC_CONFIG.apiEndPoint
   protected resource: string
   private http: Http
+  private factoryModel: FactoryModel<T>
 
   /**
    * Creates an instance of ApiBaseService.
@@ -22,9 +25,10 @@ export abstract class ApiBaseService<T extends { id: string }> extends BaseServi
    *
    * @memberof ApiBaseService
    */
-  constructor (http: Http) {
+  constructor (http: Http, construct: new (id?: string, createdAt?: Date, updatedAt?: Date, api?: ApiBaseService<T>) => T) {
     super()
     this.http = http
+    this.factoryModel = new FactoryModel<T>(construct)
   }
 
   /**
@@ -97,6 +101,9 @@ export abstract class ApiBaseService<T extends { id: string }> extends BaseServi
    * @memberof ApiBaseService
    */
   public delete (model: T): Observable<T> {
+    if (!model.id) {
+      throw new Error('ID not defined! Delete fail')
+    }
     return this.normalizeObservable(
       this.http.delete(this.normalizeURI(model.id))
     )
@@ -135,6 +142,25 @@ export abstract class ApiBaseService<T extends { id: string }> extends BaseServi
   }
 
   /**
+   * Instancia a classe referente ao modelo que está consumindo
+   * da api.
+   *
+   * Esse método é executado para mapear os resultados obtidos em
+   * quaisquer consultas na api. Transformando Object JSON em T ou T[]
+   *
+   * @protected
+   * @param {*} data
+   * @returns {(T | T[])}
+   * @memberof ApiBaseService
+   */
+  protected instanceModel (data: any): T | T[] {
+    if (data instanceof Array) {
+      return data.map((el: any) => this.instanceModel(el) as T)
+    }
+    return this.factoryModel.fromData(data, this)
+  }
+
+  /**
    * Normalize URI
    * dado uma rota e seus parâmetros, retorna a url
    * completa com path da api
@@ -170,6 +196,7 @@ export abstract class ApiBaseService<T extends { id: string }> extends BaseServi
   private normalizeObservable (source: Observable<Response>): Observable<T | T[]> {
     return source
       .map(res => this.extractData(res))
+      .map(data => this.instanceModel(data))
       .catch(err => this.handleError(err))
   }
 
