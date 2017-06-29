@@ -1,23 +1,33 @@
 import { Injectable } from '@angular/core'
-import { EventsApiService } from './events-api.service'
+import { EventApiService } from './events-api.service'
+import { InvitationApiService } from './invitation-api.service'
 
 @Injectable()
 export class ApiService {
 
   /**
-   * API de eventos
+   * Serviço de API de eventos
    *
-   * @type {EventsApiService}@memberof ApiService
+   * @type {EventApiService}@memberof ApiService
    */
-  public events: EventsApiService
+  public event: EventApiService
+
+  /**
+   * Serviço de API de convites
+   *
+   * @type {InvitationApiService}
+   * @memberof ApiService
+   */
+  public invitation: InvitationApiService
 
   /**
    * Creates an instance of ApiService.
    * @param {EventsApiService} events
    * @memberof ApiService
    */
-  constructor (events: EventsApiService) {
-    this.events = events
+  constructor (event: EventApiService, invitation: InvitationApiService) {
+    this.event = event
+    this.invitation = invitation
   }
 
 }

@@ -4,7 +4,7 @@ import { Event } from 'models'
 import { ApiBaseService } from './api-base.service'
 
 @Injectable()
-export class EventsApiService extends ApiBaseService<Event> {
+export class EventApiService extends ApiBaseService<Event> {
 
   /**
    * Creates an instance of EventsApiService.

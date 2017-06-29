@@ -1,3 +1,5 @@
 export * from './base.model'
 export * from './event.model'
 export * from './factory-model'
+export * from './invitation.model'
+export * from './organization.model'
