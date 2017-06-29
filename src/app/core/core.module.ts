@@ -10,7 +10,8 @@ import {
 } from './auth'
 import { TokenStorageService } from './auth/token-storage.service'
 import { ApiService } from './providers'
-import { EventsApiService } from './providers/api/events-api.service'
+import { EventApiService } from './providers/api/events-api.service'
+import { InvitationApiService } from './providers/api/invitation-api.service'
 import { StorageService } from './storage'
 
 @NgModule({
@@ -26,7 +27,8 @@ import { StorageService } from './storage'
     JwtHelper,
     TokenStorageService,
     ApiService,
-    EventsApiService,
+    EventApiService,
+    InvitationApiService,
     StorageService
   ]
 })
