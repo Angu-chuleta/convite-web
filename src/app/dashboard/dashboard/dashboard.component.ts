@@ -32,7 +32,8 @@ export class DashboardComponent implements OnDestroy, OnInit {
         this.recentEvents = events
         this.numEventsColabored = events.map(e => e.userRole === 'Colaborador').length
         this.numEventsOrganized = events.map(e => e.userRole === 'Organizador').length
-      })
+      },
+      err => void(0))
     )
   }
 

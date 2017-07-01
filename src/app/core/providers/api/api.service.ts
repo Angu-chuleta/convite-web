@@ -60,6 +60,10 @@ export class ApiService {
     return new Observable<Array<Event>>(sub => {
       const queryParams = { page: 1, limit: 5 }
       let promises = new Array<Promise<any>>()
+      if (!this.auth.atualUser) {
+        sub.error('Sem usuário logado!')
+        return
+      }
       promises.push(this.organization.query({ where: { user: this.auth.atualUser.id } }, queryParams).toPromise())
       promises.push(this.invitation.query({ where: { guest: this.auth.atualUser.id } }, queryParams).toPromise())
       Promise.all(promises)
