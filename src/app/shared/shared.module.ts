@@ -3,6 +3,20 @@ import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router'
 
+// primeng
+import {
+    AutoCompleteModule,
+    CalendarModule,
+    DataTableModule,
+    DropdownModule,
+    FieldsetModule,
+    MultiSelectModule,
+    PaginatorModule,
+    SharedModule as PrimeNgSharedModule,
+    TooltipModule,
+    TreeTableModule
+} from 'primeng/primeng'
+
 // Components
 import {
   FooterComponent,
@@ -31,7 +45,19 @@ import {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+
+    // PrimeNG imports
+    AutoCompleteModule,
+    CalendarModule,
+    DataTableModule,
+    DropdownModule,
+    FieldsetModule,
+    MultiSelectModule,
+    PaginatorModule,
+    PrimeNgSharedModule,
+    TooltipModule,
+    TreeTableModule
   ],
   exports: [
     // Angular exports
@@ -47,7 +73,19 @@ import {
     LogoComponent,
     NavbarComponent,
     SidebarComponent,
-    ValidationMessageComponent
+    ValidationMessageComponent,
+
+    // PrimeNG exports
+    AutoCompleteModule,
+    CalendarModule,
+    DataTableModule,
+    DropdownModule,
+    FieldsetModule,
+    MultiSelectModule,
+    PaginatorModule,
+    PrimeNgSharedModule,
+    TooltipModule,
+    TreeTableModule
   ],
   providers: [
   ]
