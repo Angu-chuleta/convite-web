@@ -1,8 +1,48 @@
-import { Component } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { ApiService } from 'app/core/providers'
+import { Event } from 'models'
+import { Subscription } from 'rxjs/Subscription'
 
 @Component({
   selector: 'inv-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent { }
+export class DashboardComponent implements OnDestroy, OnInit {
+
+  public recentEvents: Array<Event> = []
+  public numEventsOrganized: number = 0
+  public numEventsColabored: number = 0
+  public numInvitations: number = 10
+  private api: ApiService
+  private subscriptions: Array<Subscription> = []
+  constructor (api: ApiService) {
+    this.api = api
+  }
+
+  /**
+   * On page load complete
+   *
+   * @memberof DashboardComponent
+   */
+  ngOnInit (): void {
+    this.subscriptions.push(
+      this.api.getRecentEvents()
+      .subscribe(events => {
+        this.recentEvents = events
+        this.numEventsColabored = events.map(e => e.userRole === 'Colaborador').length
+        this.numEventsOrganized = events.map(e => e.userRole === 'Organizador').length
+      })
+    )
+  }
+
+  /**
+   * On destroy page
+   *
+   * @memberof DashboardComponent
+   */
+  ngOnDestroy (): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe())
+  }
+
+}

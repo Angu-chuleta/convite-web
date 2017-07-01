@@ -10,8 +10,9 @@ import {
 } from './auth'
 import { TokenStorageService } from './auth/token-storage.service'
 import { ApiService } from './providers'
-import { EventApiService } from './providers/api/events-api.service'
+import { EventApiService } from './providers/api/event-api.service'
 import { InvitationApiService } from './providers/api/invitation-api.service'
+import { OrganizationApiService } from './providers/api/organization-api.service'
 import { StorageService } from './storage'
 
 @NgModule({
@@ -29,6 +30,7 @@ import { StorageService } from './storage'
     ApiService,
     EventApiService,
     InvitationApiService,
+    OrganizationApiService,
     StorageService
   ]
 })
