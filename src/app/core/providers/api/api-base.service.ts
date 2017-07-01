@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Http, Response } from '@angular/http'
 import { GRC_CONFIG } from 'app/core'
-import { IBase } from 'interfaces'
-import { FactoryModel } from 'models'
+import { IBase, IPagination } from 'interfaces'
+import { FactoryModel, Pagination } from 'models'
 import 'rxjs/add/operator/catch'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/share'
@@ -76,6 +76,21 @@ export abstract class ApiBaseService<T extends IBase> extends BaseService {
   }
 
   /**
+   * Custom query
+   * Consultas personalizadas
+   *
+   * @param {Object} body
+   * @param {Params} [params]
+   * @returns {Observable<Pagination<T>>}
+   * @memberof ApiBaseService
+   */
+  public query ( body: Object, params?: Params ): Observable<Pagination<T>> {
+    return this.normalizeObservable(
+      this.http.post( this.normalizeURI( `/query`, params ), body )
+    )
+  }
+
+  /**
    * Save model
    * Salva no servidor o registro atual
    *
@@ -136,8 +151,9 @@ export abstract class ApiBaseService<T extends IBase> extends BaseService {
    * @memberof ApiBaseService
    */
   protected update (model: T): Observable<T> {
+    if (!model.id) { throw new Error('No update without id') }
     return this.normalizeObservable(
-      this.http.post(this.apiEndPoint, model)
+      this.http.put(this.normalizeURI(model.id), model)
     )
   }
 
@@ -153,9 +169,16 @@ export abstract class ApiBaseService<T extends IBase> extends BaseService {
    * @returns {(T | T[])}
    * @memberof ApiBaseService
    */
-  protected instanceModel (data: any): T | T[] {
+  protected instanceModel (data: any): T | T[] | IPagination<T> {
     if (data instanceof Array) {
       return data.map((el: any) => this.instanceModel(el) as T)
+    } else if (data && (data.result instanceof Array)) {
+      let page = new Pagination<T>()
+      page.page = Number(data.page)
+      page.pageSize = data.result.length
+      page.total = Number(data.total)
+      page.result = data.result.map((el: any) => this.instanceModel(el))
+      return page
     }
     return this.factoryModel.fromData(data, this)
   }
@@ -189,12 +212,12 @@ export abstract class ApiBaseService<T extends IBase> extends BaseService {
    *
    * @private
    * @param {Observable<Response>} source
-   * @returns {(Observable<T | T[]>)}
-   *
+   * @returns {(Observable<T | T[] | Pagination<T>>)}
    * @memberof ApiBaseService
    */
-  private normalizeObservable (source: Observable<Response>): Observable<T | T[]> {
+  private normalizeObservable (source: Observable<Response>): Observable<T | T[] | Pagination<T>> {
     return source
+      .share()
       .map(res => this.extractData(res))
       .map(data => this.instanceModel(data))
       .catch(err => this.handleError(err))

@@ -99,6 +99,7 @@ export abstract class BaseModel implements IBase {
       throw new Error('No api instance for model save!')
     }
     const self: any = Object.assign({}, this)
+    delete self.api
     delete self.id
     delete self.pId
     self.id = this.id

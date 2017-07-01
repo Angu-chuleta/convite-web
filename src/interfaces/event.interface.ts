@@ -58,6 +58,14 @@ export interface IEvent extends IBase {
    * @memberof IEvent
    */
   eventsPlace: IEventsPlace
+  /**
+   * Campo puramente usado no front para saber
+   * a relação do evento com usuário atual logado
+   *
+   * @type {('Organizador' | 'Colaborador' | 'Convidado')}
+   * @memberof IEvent
+   */
+  userRole?: 'Organizador' | 'Colaborador' | 'Convidado'
 }
 
 export interface IEventTime {

@@ -132,16 +132,13 @@ export abstract class HttpAuthInterceptor extends Http {
   protected intercept ( observable: Observable<Response> ): Observable<Response> {
     return observable.catch(( resp: Response, source: any ) => {
 
-      let body = resp.json()
-
-      if ( resp.status === 401 && body.error === 'token_expired' ) {
+      if ( resp.status === 401 ) {
         this.removeToken()
-        return Observable.throw( { message: 'Sessão expirada!' } )
+        return Observable.throw( { message: 'Sessão expirada! Por favor faça o login.' } )
       }
 
-      if ( resp.status === 401 && body.error === 'token_invalid' ) {
-        this.removeToken()
-        return Observable.throw( { message: 'Não autorizado! Por favor faça o login.' } )
+      if ( resp.status === 403 ) {
+        return Observable.throw( { message: 'Não autorizado!' } )
       }
 
       return Observable.throw( resp )

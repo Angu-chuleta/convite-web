@@ -2,18 +2,18 @@
   <div class="row tile_count text-center">
     <div class="col-md-2 col-sm-4 col-xs-4 tile_stats_count">
       <span class="count_top"><i class="fa fa-envelope"></i> Eventos Organizados</span>
-      <div class="count">2</div>
-      <span class="count_bottom"><i class="green">1 </i> Não concluído</span>
+      <div class="count">{{numEventsOrganized}}</div>
+      <span class="count_bottom"><i class="green">Julho</i></span>
     </div>
     <div class="col-md-2 col-sm-4 col-xs-4 tile_stats_count">
       <span class="count_top"><i class="fa fa-envelope"></i> Eventos Colaborados</span>
-      <div class="count">3</div>
-      <span class="count_bottom"><i class="green">1 </i> Não concluídos</span>
+      <div class="count">{{numEventsColabored}}</div>
+      <span class="count_bottom"><i class="green">Julho</i></span>
     </div>
     <div class="col-md-2 col-sm-4 col-xs-4 tile_stats_count">
       <span class="count_top"><i class="fa fa-envelope"></i> Convites Enviados (Julho)</span>
-      <div class="count">191</div>
-      <span class="count_bottom"><i class="red">20% </i> Rejeitados</span>
+      <div class="count">{{numInvitations}}</div>
+      <span class="count_bottom"><i class="red">10% </i> Rejeitados</span>
     </div>
   </div>
   <div class="row">
@@ -24,42 +24,18 @@
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Data</th>
-                <th>Hora</th>
-                <th>Tipo</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Evento de Inauguração do Invite.Me</th>
-                <td>30/07/2017</td>
-                <td>19:30:00</td>
-                <td>Organizado</td>
-              </tr>
-              <tr>
-                <th scope="row">Marombas Party 2.0</th>
-                <td>25/06/2017</td>
-                <td>20:00:00</td>
-                <td>Convidado</td>
-              </tr>
-              <tr>
-                <th scope="row">Casamento do Irineu</th>
-                <td>30/06/2017</td>
-                <td>19:00:00</td>
-                <td>Convidado</td>
-              </tr>
-              <tr>
-                <th scope="row">Festa Cultural IFES 2017</th>
-                <td>10/07/2017</td>
-                <td>13:00:00</td>
-                <td>Colaborador</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <p-dataTable [value]="recentEvents" tableStyleClass="table table-hover table-striped" emptyMessage="Não há eventos recentes"
+              resizableColumns="true">
+              <p-column field="name" header="Nome" sortable="true"></p-column>
+              <p-column field="date" header="Data">
+                <ng-template let-col let-event="rowData" pTemplate="body">
+                  <span>{{event[col.field] | date:'dd/MM/yyyy'}}</span>
+                </ng-template>
+              </p-column>
+              <p-column field="userRole" header="Tipo" sortable="true"></p-column>
+            </p-dataTable>
+          </div>
         </div>
       </div>
     </div>

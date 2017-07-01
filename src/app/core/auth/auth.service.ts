@@ -55,6 +55,17 @@ export class AuthService extends BaseService {
   }
 
   /**
+   * GET Atual user
+   *
+   * @readonly
+   * @type {IUserClaims}
+   * @memberof AuthService
+   */
+  public get atualUser (): IUserClaims {
+    return this.user
+  }
+
+  /**
    * Login
    *
    * @param {{ email: string, password: string, keepLogin?: boolean }} credentials

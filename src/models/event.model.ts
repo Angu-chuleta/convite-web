@@ -21,5 +21,5 @@ export class Event extends BaseModel implements IEvent {
     state: '',
     country: ''
   }
-
+  userRole?: 'Organizador' | 'Colaborador' | 'Convidado'
 }
