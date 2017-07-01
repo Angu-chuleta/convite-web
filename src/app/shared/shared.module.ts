@@ -19,6 +19,7 @@ import {
 
 // Components
 import {
+  EventListComponent,
   FooterComponent,
   LayoutDefaultComponent,
   LayoutExtraComponent,
@@ -31,6 +32,7 @@ import {
 
 @NgModule({
   declarations: [
+    EventListComponent,
     FooterComponent,
     LayoutDefaultComponent,
     LayoutExtraComponent,
@@ -66,6 +68,7 @@ import {
     ReactiveFormsModule,
 
     // Components
+    EventListComponent,
     FooterComponent,
     LayoutDefaultComponent,
     LayoutExtraComponent,

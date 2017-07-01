@@ -1,3 +1,4 @@
+export * from './event-list/event-list.component'
 export * from './footer/footer.component'
 export * from './layouts'
 export * from './loading-logged-out/loading-logged-out.component'
