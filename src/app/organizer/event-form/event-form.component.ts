@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { FormBase, ValidationMessages } from 'app/core/forms'
-import { IEvent } from 'interfaces'
+import { CepService } from 'app/core/providers'
 import { Event } from 'models'
 
 @Component({
@@ -47,9 +47,11 @@ export class EventFormComponent extends FormBase implements OnChanges {
     }
   }
 
-  constructor (formBuilder: FormBuilder) {
-    super(formBuilder);
-    (window as any).form = this.form
+  private cep: CepService
+
+  constructor (formBuilder: FormBuilder, cep: CepService) {
+    super(formBuilder)
+    this.cep = cep
   }
 
   ngOnChanges () {
@@ -58,37 +60,45 @@ export class EventFormComponent extends FormBase implements OnChanges {
     }
   }
 
-  findCep (model: IEvent): void {
-    // let cep = model.eventsPlace.zipCode
-    // let endereco = model.eventsPlace.address
-    // let num = model.eventsPlace.number
-    // let bairro = model.eventsPlace.neighbor
-    // let cidade = model.eventsPlace.city
-    // let estado = model.eventsPlace.state
+  fillAddress (cep: FormControl | null): void {
 
-    // const controlNeighbor = this.form.get('neighbor')
-    // const controlCity = this.form.get('city')
-    // const controlState = this.form.get('state')
+    if (!cep) { return }
+    if (cep.invalid) { return }
 
-    // if (!cidade && !bairro && !estado) {
-    //   if (controlNeighbor && controlCity && controlState) {
-    //     controlNeighbor.disable()
-    //     controlCity.disable()
-    //     controlState.disable()
-    //   }
-    //   let sub = this.maps.getAddress(model.zipCode).subscribe(address => {
-    //     this.form.patchValue({ 'neighbor': address.neighbor }, { onlySelf: true, emitEvent: true })
-    //     this.form.patchValue({ 'city': address.city }, { onlySelf: true, emitEvent: true })
-    //     this.form.patchValue({ 'state': address.state }, { onlySelf: true, emitEvent: true })
-    //   }, () => void (0), () => {
-    //     if (controlNeighbor && controlCity && controlState) {
-    //       controlNeighbor.enable()
-    //       controlCity.enable()
-    //       controlState.enable()
-    //     }
-    //     sub.unsubscribe()
-    //   })
-    // }
+    const toggleControls = (doControl?: 'disable') => {
+      const controlAddress = this.form.get('eventsPlace.address')
+      const controlComplement = this.form.get('eventsPlace.complement')
+      const controlNeighbor = this.form.get('eventsPlace.neighbor')
+      const controlCity = this.form.get('eventsPlace.city')
+      const controlState = this.form.get('eventsPlace.state')
+      if (controlNeighbor && controlCity && controlState && controlAddress && controlComplement) {
+        if (doControl === 'disable') {
+          controlAddress.disable()
+          controlComplement.disable()
+          controlNeighbor.disable()
+          controlCity.disable()
+          controlState.disable()
+        } else {
+          controlAddress.enable()
+          controlComplement.enable()
+          controlNeighbor.enable()
+          controlCity.enable()
+          controlState.enable()
+        }
+      }
+    }
+
+    toggleControls('disable')
+
+    this.cep.getAddress(cep.value.replace(/\D/g, ''))
+      .subscribe(
+        address => {
+          const eventsPlace = this.form.get('eventsPlace')
+          if (!eventsPlace) { return }
+          eventsPlace.patchValue(address)
+          toggleControls()
+        }
+      )
   }
 
   protected createFormModel (): FormGroup {

@@ -9,7 +9,10 @@ import {
   JwtHelper
 } from './auth'
 import { TokenStorageService } from './auth/token-storage.service'
-import { ApiService } from './providers'
+import {
+  ApiService,
+  CepService
+} from './providers'
 import { EventApiService } from './providers/api/event-api.service'
 import { InvitationApiService } from './providers/api/invitation-api.service'
 import { OrganizationApiService } from './providers/api/organization-api.service'
@@ -21,17 +24,18 @@ import { StorageService } from './storage'
     RouterModule
   ],
   providers: [
+    ApiService,
     AuthService,
     AuthRouterGuard,
+    CepService,
+    EventApiService,
     httpProvider,
+    InvitationApiService,
     IsLoggedInGuard,
     JwtHelper,
-    TokenStorageService,
-    ApiService,
-    EventApiService,
-    InvitationApiService,
     OrganizationApiService,
-    StorageService
+    StorageService,
+    TokenStorageService
   ]
 })
 export class CoreModule { }

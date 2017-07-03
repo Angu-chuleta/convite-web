@@ -27,7 +27,7 @@ export class CreateEventComponent {
    * @param {Event} event
    * @memberof CreateEventComponent
    */
-  submit (event: Event): void {
+  public submit (event: Event): void {
     const sub = this.api.event.save(event)
       .subscribe(
         ev => {
