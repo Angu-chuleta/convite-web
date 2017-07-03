@@ -1,16 +1,16 @@
 <inv-layout-default>
   <div class="row tile_count text-center">
-    <div class="col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+    <div class="col-md-4 col-sm-4 col-xs-4 tile_stats_count">
       <span class="count_top"><i class="fa fa-envelope"></i> Eventos Organizados</span>
       <div class="count">{{numEventsOrganized}}</div>
       <span class="count_bottom"><i class="green">Julho</i></span>
     </div>
-    <div class="col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+    <div class="col-md-4 col-sm-4 col-xs-4 tile_stats_count">
       <span class="count_top"><i class="fa fa-envelope"></i> Eventos Colaborados</span>
       <div class="count">{{numEventsColabored}}</div>
       <span class="count_bottom"><i class="green">Julho</i></span>
     </div>
-    <div class="col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+    <div class="col-md-4 col-sm-4 col-xs-4 tile_stats_count">
       <span class="count_top"><i class="fa fa-envelope"></i> Convites Enviados (Julho)</span>
       <div class="count">{{numInvitations}}</div>
       <span class="count_bottom"><i class="red">10% </i> Rejeitados</span>
@@ -25,12 +25,16 @@
         </div>
         <div class="x_content">
           <div class="table-responsive">
-            <p-dataTable [value]="recentEvents" tableStyleClass="table table-hover table-striped" emptyMessage="Não há eventos recentes"
-              resizableColumns="true">
+            <p-dataTable [value]="recentEvents" emptyMessage="Não há eventos recentes">
               <p-column field="name" header="Nome" sortable="true"></p-column>
-              <p-column field="date" header="Data">
+              <p-column field="date" header="Data" sortable="true">
                 <ng-template let-col let-event="rowData" pTemplate="body">
                   <span>{{event[col.field] | date:'dd/MM/yyyy'}}</span>
+                </ng-template>
+              </p-column>
+              <p-column field="time" header="Hora" sortable="true">
+                <ng-template let-col let-event="rowData" pTemplate="body">
+                  <span>{{event[col.field].start | date:'HH:MM'}}h - {{event[col.field].end | date:'HH:MM'}}h</span>
                 </ng-template>
               </p-column>
               <p-column field="userRole" header="Tipo" sortable="true"></p-column>
