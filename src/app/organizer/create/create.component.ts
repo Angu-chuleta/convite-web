@@ -33,7 +33,7 @@ export class CreateEventComponent {
         ev => {
           let organization = new Organization()
           organization.event = ev.id
-          organization.user = this.auth.atualUser.id || ''
+          organization.user = this.auth.atualUser ? this.auth.atualUser.id || '' : ''
           const sub2 = this.api.organization.save(organization)
             .subscribe(
               () => {
