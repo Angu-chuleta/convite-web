@@ -1,3 +1,17 @@
-<p>
-  event-list works!
-</p>
+<div class="table-responsive" *ngIf="events">
+  <p-dataTable [value]="events.result" emptyMessage="Não há eventos">
+    <p-column field="name" header="Nome" sortable="true"></p-column>
+    <p-column field="date" header="Data" sortable="true">
+      <ng-template let-col let-event="rowData" pTemplate="body">
+        <span>{{event[col.field] | date:'dd/MM/yyyy'}}</span>
+      </ng-template>
+    </p-column>
+    <p-column field="time" header="Hora" sortable="true">
+      <ng-template let-col let-event="rowData" pTemplate="body">
+        <span>{{event[col.field].start}}h - {{event[col.field].end}}h</span>
+      </ng-template>
+    </p-column>
+  </p-dataTable>
+</div>
+<hr>
+<p-paginator [totalRecords]="events.total" (onPageChange)="changePage($event)" [rows]="pageSize" [rowsPerPageOptions]="pageSizeOptions"></p-paginator>

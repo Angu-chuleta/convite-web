@@ -118,6 +118,21 @@ export abstract class FormBase {
   }
 
   /**
+   * Limpar formulário
+   *
+   * @protected
+   * @memberof FormBase
+   */
+  protected clear (): void {
+    const idControl = this.form.get('id')
+    const id: string = idControl ? idControl.value : ''
+    this.form.reset()
+    if (id) {
+      this.form.patchValue({ id })
+    }
+  }
+
+  /**
    *
    *
    * @protected
@@ -160,6 +175,15 @@ export abstract class FormBase {
   protected showErrors (): void {
     Object.keys(this.form.controls).forEach(key => {
       let value = this.form.get(key)
+      if (!value) { return }
+      if (value instanceof FormGroup) {
+        Object.keys(value.controls).forEach(k => {
+          if (!value) { return }
+          let val = value.get(k)
+          if (!val) { return }
+          if (val) { val.markAsTouched() }
+        })
+      }
       if (value) {
         value.markAsTouched()
       }

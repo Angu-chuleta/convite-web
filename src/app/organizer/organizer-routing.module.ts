@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
+import { CreateEventComponent } from './create/create.component'
+import { EventListComponent } from './event-list/event-list.component'
 import { OrganizerComponent } from './organizer.component'
 
 const routes: Routes = [
@@ -9,12 +11,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'events',
-        pathMatch: 'full'
+        component: EventListComponent
       },
       {
-        path: 'events',
-        component: OrganizerComponent
+        path: 'create',
+        component: CreateEventComponent
       }
     ]
   }
