@@ -34,7 +34,7 @@
               </p-column>
               <p-column field="time" header="Hora" sortable="true">
                 <ng-template let-col let-event="rowData" pTemplate="body">
-                  <span>{{event[col.field].start | date:'HH:MM'}}h - {{event[col.field].end | date:'HH:MM'}}h</span>
+                  <span>{{event[col.field].start}}h - {{event[col.field].end}}h</span>
                 </ng-template>
               </p-column>
               <p-column field="userRole" header="Tipo" sortable="true"></p-column>
