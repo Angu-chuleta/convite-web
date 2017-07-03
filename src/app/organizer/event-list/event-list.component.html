@@ -1,0 +1,14 @@
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="x_panel tile fixed_height_320">
+        <div class="x_title">
+          <h2>Meus Eventos</h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <inv-event-list [events]="events" (onPageChange)="getEvents($event)"></inv-event-list>
+          <a routerLink="/organizer/create" class="btn btn-primary pull-right">Novo evento</a>
+        </div>
+      </div>
+    </div>
+  </div>

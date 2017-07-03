@@ -1,0 +1,109 @@
+<form novalidate [formGroup]="form" (ngSubmit)="onSubmitClick(form.value)">
+  <div class="row">
+    <div class="col-lg-8 col-md-7 col-sm-6 col-xs-6">
+      <div class="form-group">
+        <label for="name">Nome do Evento</label>
+        <input id="name" formControlName="name" type="text" class="form-control">
+        <inv-validation-message [errors]="validationErrors['name']"></inv-validation-message>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
+      <div class="form-group">
+        <label for="date">Data</label>
+        <input id="date" formControlName="date" type="date" class="form-control">
+        <inv-validation-message [errors]="validationErrors['date']"></inv-validation-message>
+      </div>
+    </div>
+  </div>
+  <div class="row" formGroupName="time">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <div class="form-group">
+        <label for="start">Hora de Início</label>
+        <input id="start" formControlName="start" type="time" class="form-control">
+        <inv-validation-message [errors]="validationErrors['time.start']"></inv-validation-message>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <div class="form-group">
+        <label for="end">Hora de Término</label>
+        <input id="end" formControlName="end" type="time" class="form-control">
+        <inv-validation-message [errors]="validationErrors['time.end']"></inv-validation-message>
+      </div>
+    </div>
+  </div>
+  <div formGroupName="eventsPlace">
+    <div class="row">
+      <div class="col-lg-9 col-md-8 col-sm-6 col-xs-6">
+        <div class="form-group">
+          <label for="nameLocal">Nome do Local</label>
+          <input id="nameLocal" formControlName="name" type="text" class="form-control">
+          <inv-validation-message [errors]="validationErrors['eventsPlace.name']"></inv-validation-message>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+        <div class="form-group">
+          <label for="capacity">Capacidade</label>
+          <input id="capacity" formControlName="capacity" type="number" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+        <div class="form-group">
+          <label for="zipCode">CEP</label>
+          <input id="zipCode" [textMask]="{mask: masks.cep}" formControlName="zipCode" type="text" class="form-control">
+          <inv-validation-message [errors]="validationErrors['eventsPlace.zipCode']"></inv-validation-message>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="form-group">
+          <label for="address">Logradouro</label>
+          <input id="address" formControlName="address" type="text" class="form-control" required>
+          <inv-validation-message [errors]="validationErrors['eventsPlace.address']"></inv-validation-message>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="form-group">
+          <label for="complement">Complemento</label>
+          <input id="complement" formControlName="complement" type="text" class="form-control">
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+        <div class="form-group">
+          <label for="number">Nº</label>
+          <input id="number" formControlName="number" type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group">
+          <label for="neighbor">Bairro</label>
+          <input id="neighbor" formControlName="neighbor" type="text" class="form-control">
+          <inv-validation-message [errors]="validationErrors['eventsPlace.neighbor']"></inv-validation-message>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="form-group">
+          <label for="city">Cidade</label>
+          <input id="city" formControlName="city" type="text" class="form-control">
+          <inv-validation-message [errors]="validationErrors['eventsPlace.city']"></inv-validation-message>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="form-group">
+          <label for="state">Estado</label>
+          <input id="state" formControlName="state" type="text" class="form-control">
+          <inv-validation-message [errors]="validationErrors['eventsPlace.state']"></inv-validation-message>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row form-actions">
+    <div class="col-xs-12">
+      <button type="submit" class="btn btn-success">Salvar</button>
+      <button type="button" (click)="clear()" class="btn btn-warning">Limpar</button>
+      <button type="button" *ngIf="event.id" (click)="onCancelClick(form.value)" class="btn btn-default">Cancelar</button>
+    </div>
+  </div>
+</form>
