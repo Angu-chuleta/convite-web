@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router'
+import { TextMaskModule } from 'angular2-text-mask'
 
 // primeng
 import {
@@ -49,6 +50,9 @@ import {
     ReactiveFormsModule,
     RouterModule,
 
+    // Others imports
+    TextMaskModule,
+
     // PrimeNG imports
     AutoCompleteModule,
     CalendarModule,
@@ -77,6 +81,9 @@ import {
     NavbarComponent,
     SidebarComponent,
     ValidationMessageComponent,
+
+    // Others exports
+    TextMaskModule,
 
     // PrimeNG exports
     AutoCompleteModule,
