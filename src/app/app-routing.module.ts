@@ -21,6 +21,12 @@ const routes: Routes = [
     canActivate: [IsLoggedInGuard]
   },
   {
+    path: 'organizer',
+    loadChildren: 'app/organizer/organizer.module#OrganizerModule',
+    canLoad: [IsLoggedInGuard],
+    canActivate: [IsLoggedInGuard]
+  },
+  {
     path: 'errors',
     loadChildren: 'app/errors/errors.module#ErrorsModule'
   },
