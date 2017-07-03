@@ -10,6 +10,7 @@ export class TokenStorageService {
   token$: Observable<string>
   private token: BehaviorSubject<string>
   private key: string = `inv-${environment.envName}-token`
+  private keep: boolean = true
 
   /**
    * Creates an instance of TokenStorageService.
@@ -30,6 +31,9 @@ export class TokenStorageService {
    * @memberof TokenStorageService
    */
   get (): string {
+    if (!this.keep) {
+      return this.token.value
+    }
     return this.storage.getItem(this.key)
   }
 
@@ -42,6 +46,7 @@ export class TokenStorageService {
    * @memberof TokenStorageService
    */
   set (token: string, keep: boolean): void {
+    this.keep = keep
     if (keep) {
       this.storage.setItem(this.key, token)
     }
