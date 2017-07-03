@@ -120,10 +120,9 @@ export abstract class FormBase {
   /**
    * Limpar formulário
    *
-   * @protected
    * @memberof FormBase
    */
-  protected clear (): void {
+  public clear (): void {
     const idControl = this.form.get('id')
     const id: string = idControl ? idControl.value : ''
     this.form.reset()
