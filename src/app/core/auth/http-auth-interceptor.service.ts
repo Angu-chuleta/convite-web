@@ -115,7 +115,11 @@ export abstract class HttpAuthInterceptor extends Http {
     if ( !this.inteceptorConfig.noTokenError && !token ) {
       return Observable.throw( new Error( 'No authorization token given' ) )
     } else {
-      req.headers.set( this.inteceptorConfig.headerName, `${token}` )
+      if (!req.headers.get('noAuthToken')) {
+        req.headers.set( this.inteceptorConfig.headerName, `${token}` )
+      } else {
+        req.headers.delete('noAuthToken')
+      }
     }
 
     return super.request( req )
