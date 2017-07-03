@@ -51,7 +51,7 @@
       <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
         <div class="form-group">
           <label for="zipCode">CEP</label>
-          <input id="zipCode" [textMask]="{mask: masks.cep}" formControlName="zipCode" type="text" class="form-control">
+          <input id="zipCode" [textMask]="{mask: masks.cep}" formControlName="zipCode" type="text" class="form-control" (blur)="fillAddress(form.get('eventsPlace.zipCode'))">
           <inv-validation-message [errors]="validationErrors['eventsPlace.zipCode']"></inv-validation-message>
         </div>
       </div>
