@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { FormBase, ValidationMessages } from 'app/core/forms'
 import { CepService } from 'app/core/providers'
 import { Event } from 'models'
@@ -60,7 +60,7 @@ export class EventFormComponent extends FormBase implements OnChanges {
     }
   }
 
-  fillAddress (cep: FormControl | null): void {
+  fillAddress (cep: AbstractControl | null): void {
 
     if (!cep) { return }
     if (cep.invalid) { return }
