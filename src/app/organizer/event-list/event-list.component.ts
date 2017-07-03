@@ -25,7 +25,7 @@ export class EventListComponent implements OnDestroy, OnInit {
 
   public getEvents (pagination: {page: number, pageSize: number}): void {
     this.subscriptions.push(this.api.organization.query({
-      user: this.auth.atualUser.id
+      user: this.auth.atualUser ? this.auth.atualUser.id : ''
     }, { page: pagination.page, limit: pagination.pageSize }).subscribe(
       org => {
         this.subscriptions.push(this.api.event.query({

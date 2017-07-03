@@ -16,7 +16,7 @@ import { TokenStorageService } from './token-storage.service'
 export class AuthService extends BaseService {
 
   public redirect: string[] = ['/dashboard']
-  private user: IUserClaims
+  private user: IUserClaims | null
   private token: string
 
   /**
@@ -61,7 +61,7 @@ export class AuthService extends BaseService {
    * @type {IUserClaims}
    * @memberof AuthService
    */
-  public get atualUser (): IUserClaims {
+  public get atualUser (): IUserClaims | null {
     return this.user
   }
 

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
-
+import { SharedModule } from 'app/shared'
 import { EventFormComponent } from './event-form.component'
 
 describe('EventFormComponent', () => {
@@ -8,7 +8,10 @@ describe('EventFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventFormComponent ]
+      declarations: [ EventFormComponent ],
+      imports: [
+        SharedModule
+      ]
     })
     .compileComponents()
   }))
